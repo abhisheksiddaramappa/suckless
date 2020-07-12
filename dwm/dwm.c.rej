@@ -1,0 +1,18 @@
+--- dwm.c	2008-09-09 21:46:17.000000000 +0200
++++ dwm.c	2008-11-17 18:09:29.000000000 +0100
+@@ -519,13 +521,8 @@ drawbar(void) {
+ 	}
+ 	else
+ 		x = dc.x;
+-	dc.w = TEXTW(stext);
+-	dc.x = ww - dc.w;
+-	if(dc.x < x) {
+-		dc.x = x;
+-		dc.w = ww - x;
+-	}
+-	drawtext(stext, dc.norm, False);
++	stextw = drawstatustext(x);
++	dc.x = ww - stextw;
+ 	if((dc.w = dc.x - x) > bh) {
+ 		dc.x = x;
+ 		if(sel) {
