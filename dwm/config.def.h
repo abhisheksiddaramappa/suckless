@@ -61,6 +61,8 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 //static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, NULL };
 static const char *termcmd[]  = { "terminator", NULL };
+static const char *scrotcmd[]  = { "scrot", NULL };
+static const char *scrotselectcmd[]  = { "scrot", "-s", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -99,6 +101,8 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	{ MODKEY,                       XK_Print,   spawn,      {.v = scrotcmd } },
+	{ MODKEY|ShiftMask,             XK_Print,   spawn,      SHCMD("sleep 1s;scrot --select") },
 };
 
 /* button definitions */
